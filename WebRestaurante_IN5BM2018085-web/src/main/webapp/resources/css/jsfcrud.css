@@ -1,0 +1,46 @@
+.ui-widget {
+    font-size: 12px !important;
+}
+.ui-layout-north {
+    z-index: 20 !important;
+    overflow: visible !important;;
+}
+.ui-layout-north .ui-layout-unit-content {
+    overflow: visible !important;
+}
+.ui-widget-header {
+    text-align: center;
+    text-transform: uppercase;
+}
+.ui-button {
+    margin-top: 10px !important;
+}
+
+#menu-item-10:hover{background-color:coral}
+#menu-item-11:hover{background: blue}
+#menu-item-37:hover{background: green}
+
+div a{
+    background-color: #ECDE0F;
+    color:#ECDE0F;
+    text-decoration: none;
+}
+div b{
+    background-color: #ECDE0F;  
+}
+.body{
+   background-color: white;
+   font-family : arial;
+   color : black;
+}
+ .ui-stack {
+        z-index: 1000;
+        float: left ;
+            
+    
+        
+ }
+ .parent-div img {
+   width: 14px;
+   height: 14px;
+}

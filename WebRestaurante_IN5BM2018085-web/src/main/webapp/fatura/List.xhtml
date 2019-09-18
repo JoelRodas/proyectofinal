@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="/template.xhtml">
+
+
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListFaturaTitle}"></h:outputText>
+        </ui:define>
+
+        <ui:define name="body">
+            <h:form id="FaturaListForm">
+                <p:panel header="#{bundle.ListFaturaTitle}">
+                    <p:dataTable id="datalist" value="#{faturaController.items}" var="item"
+                                 selectionMode="single" selection="#{faturaController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idFactura}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFaturaTitle_idFactura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idFactura}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFaturaTitle_fecha}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fecha}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFaturaTitle_idMesa}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMesa}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFaturaTitle_idCliente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idCliente}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFaturaTitle_idMesero}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMesero}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{faturaController.prepareCreate}" update=":FaturaCreateForm" oncomplete="PF('FaturaCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":FaturaViewForm" oncomplete="PF('FaturaViewDialog').show()" disabled="#{empty faturaController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":FaturaEditForm" oncomplete="PF('FaturaEditDialog').show()" disabled="#{empty faturaController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{faturaController.destroy}" update=":growl,datalist" disabled="#{empty faturaController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

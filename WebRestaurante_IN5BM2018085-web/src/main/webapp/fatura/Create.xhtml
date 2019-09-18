@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="FaturaCreateDlg" widgetVar="FaturaCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateFaturaTitle}">
+            <h:form id="FaturaCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{faturaController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateFaturaLabel_idFactura}" for="idFactura" />
+                        <p:inputText id="idFactura" value="#{faturaController.selected.idFactura}" title="#{bundle.CreateFaturaTitle_idFactura}" required="true" requiredMessage="#{bundle.CreateFaturaRequiredMessage_idFactura}"/>
+                        <p:outputLabel value="#{bundle.CreateFaturaLabel_fecha}" for="fecha" />
+                        <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{faturaController.selected.fecha}" title="#{bundle.EditFaturaTitle_fecha}" required="true" requiredMessage="#{bundle.EditFaturaRequiredMessage_fecha}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateFaturaLabel_idMesa}" for="idMesa" />
+                        <p:selectOneMenu id="idMesa" value="#{faturaController.selected.idMesa}" required="true" requiredMessage="#{bundle.EditFaturaRequiredMessage_idMesa}">
+                            <f:selectItems value="#{mesasController.itemsAvailableSelectOne}"
+                                           var="idMesaItem"
+                                           itemValue="#{idMesaItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFaturaLabel_idCliente}" for="idCliente" />
+                        <p:selectOneMenu id="idCliente" value="#{faturaController.selected.idCliente}" required="true" requiredMessage="#{bundle.EditFaturaRequiredMessage_idCliente}">
+                            <f:selectItems value="#{clientesController.itemsAvailableSelectOne}"
+                                           var="idClienteItem"
+                                           itemValue="#{idClienteItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateFaturaLabel_idMesero}" for="idMesero" />
+                        <p:selectOneMenu id="idMesero" value="#{faturaController.selected.idMesero}" required="true" requiredMessage="#{bundle.EditFaturaRequiredMessage_idMesero}">
+                            <f:selectItems value="#{meseroController.itemsAvailableSelectOne}"
+                                           var="idMeseroItem"
+                                           itemValue="#{idMeseroItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{faturaController.create}" value="#{bundle.Save}" update="display,:FaturaListForm:datalist,:growl" oncomplete="handleSubmit(args,'FaturaCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="FaturaCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

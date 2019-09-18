@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MeseroViewDlg" widgetVar="MeseroViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewMeseroTitle}">
+            <h:form id="MeseroViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{meseroController.selected != null}">
+                        <h:outputText value="#{bundle.ViewMeseroLabel_idMesero}"/>
+                        <h:outputText value="#{meseroController.selected.idMesero}" title="#{bundle.ViewMeseroTitle_idMesero}"/>
+                        <h:outputText value="#{bundle.ViewMeseroLabel_nombres}"/>
+                        <h:outputText value="#{meseroController.selected.nombres}" title="#{bundle.ViewMeseroTitle_nombres}"/>
+                        <h:outputText value="#{bundle.ViewMeseroLabel_apellidos}"/>
+                        <h:outputText value="#{meseroController.selected.apellidos}" title="#{bundle.ViewMeseroTitle_apellidos}"/>
+                        <h:outputText value="#{bundle.ViewMeseroLabel_porcentajepropina}"/>
+                        <h:outputText value="#{meseroController.selected.porcentajepropina}" title="#{bundle.ViewMeseroTitle_porcentajepropina}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="MeseroViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

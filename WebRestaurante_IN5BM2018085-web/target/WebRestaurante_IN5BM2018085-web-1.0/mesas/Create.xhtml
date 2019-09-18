@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MesasCreateDlg" widgetVar="MesasCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMesasTitle}">
+            <h:form id="MesasCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{mesasController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMesasLabel_idMesa}" for="idMesa" />
+                        <p:inputText id="idMesa" value="#{mesasController.selected.idMesa}" title="#{bundle.CreateMesasTitle_idMesa}" required="true" requiredMessage="#{bundle.CreateMesasRequiredMessage_idMesa}"/>
+                        <p:outputLabel value="#{bundle.CreateMesasLabel_escripcion}" for="escripcion" />
+                        <p:inputText id="escripcion" value="#{mesasController.selected.escripcion}" title="#{bundle.CreateMesasTitle_escripcion}" required="true" requiredMessage="#{bundle.CreateMesasRequiredMessage_escripcion}"/>
+                        <p:outputLabel value="#{bundle.CreateMesasLabel_idAreas}" for="idAreas" />
+                        <p:selectOneMenu id="idAreas" value="#{mesasController.selected.idAreas}" required="true" requiredMessage="#{bundle.EditMesasRequiredMessage_idAreas}">
+                            <f:selectItems value="#{areasController.itemsAvailableSelectOne}"
+                                           var="idAreasItem"
+                                           itemValue="#{idAreasItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{mesasController.create}" value="#{bundle.Save}" update="display,:MesasListForm:datalist,:growl" oncomplete="handleSubmit(args,'MesasCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MesasCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

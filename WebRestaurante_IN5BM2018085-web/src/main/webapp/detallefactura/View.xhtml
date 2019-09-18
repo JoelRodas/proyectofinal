@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DetallefacturaViewDlg" widgetVar="DetallefacturaViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDetallefacturaTitle}">
+            <h:form id="DetallefacturaViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{detallefacturaController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDetallefacturaLabel_cantidad}"/>
+                        <h:outputText value="#{detallefacturaController.selected.cantidad}" title="#{bundle.ViewDetallefacturaTitle_cantidad}"/>
+                        <h:outputText value="#{bundle.ViewDetallefacturaLabel_precioventa}"/>
+                        <h:outputText value="#{detallefacturaController.selected.precioventa}" title="#{bundle.ViewDetallefacturaTitle_precioventa}"/>
+                        <h:outputText value="#{bundle.ViewDetallefacturaLabel_totalventa}"/>
+                        <h:outputText value="#{detallefacturaController.selected.totalventa}" title="#{bundle.ViewDetallefacturaTitle_totalventa}"/>
+                        <h:outputText value="#{bundle.ViewDetallefacturaLabel_fatura}"/>
+                        <h:outputText value="#{detallefacturaController.selected.fatura}" title="#{bundle.ViewDetallefacturaTitle_fatura}"/>
+                        <h:outputText value="#{bundle.ViewDetallefacturaLabel_menu}"/>
+                        <h:outputText value="#{detallefacturaController.selected.menu}" title="#{bundle.ViewDetallefacturaTitle_menu}"/>
+                        <h:outputText value="#{bundle.ViewDetallefacturaLabel_idCocinero}"/>
+                        <h:outputText value="#{detallefacturaController.selected.idCocinero}" title="#{bundle.ViewDetallefacturaTitle_idCocinero}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DetallefacturaViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

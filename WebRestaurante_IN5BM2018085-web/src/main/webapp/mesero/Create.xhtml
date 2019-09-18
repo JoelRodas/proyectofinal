@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="MeseroCreateDlg" widgetVar="MeseroCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateMeseroTitle}">
+            <h:form id="MeseroCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{meseroController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateMeseroLabel_idMesero}" for="idMesero" />
+                        <p:inputText id="idMesero" value="#{meseroController.selected.idMesero}" title="#{bundle.CreateMeseroTitle_idMesero}" required="true" requiredMessage="#{bundle.CreateMeseroRequiredMessage_idMesero}"/>
+                        <p:outputLabel value="#{bundle.CreateMeseroLabel_nombres}" for="nombres" />
+                        <p:inputText id="nombres" value="#{meseroController.selected.nombres}" title="#{bundle.CreateMeseroTitle_nombres}" required="true" requiredMessage="#{bundle.CreateMeseroRequiredMessage_nombres}"/>
+                        <p:outputLabel value="#{bundle.CreateMeseroLabel_apellidos}" for="apellidos" />
+                        <p:inputText id="apellidos" value="#{meseroController.selected.apellidos}" title="#{bundle.CreateMeseroTitle_apellidos}" required="true" requiredMessage="#{bundle.CreateMeseroRequiredMessage_apellidos}"/>
+                        <p:outputLabel value="#{bundle.CreateMeseroLabel_porcentajepropina}" for="porcentajepropina" />
+                        <p:inputText id="porcentajepropina" value="#{meseroController.selected.porcentajepropina}" title="#{bundle.CreateMeseroTitle_porcentajepropina}" required="true" requiredMessage="#{bundle.CreateMeseroRequiredMessage_porcentajepropina}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{meseroController.create}" value="#{bundle.Save}" update="display,:MeseroListForm:datalist,:growl" oncomplete="handleSubmit(args,'MeseroCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="MeseroCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

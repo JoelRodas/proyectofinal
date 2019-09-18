@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <h:body class="body">
+          <center><FONT FACE="impact" SIZE="6" COLOR="black">
+            RESTAURANTE BRASAS Y LEÑAS</FONT></center>
+        <br />
+        <center><h:link outcome="welcomePrimefaces" value=" Welcome page" style="color:#BA5516;"/>
+        <br />
+        <br />
+        &nbsp;
+        <h:link outcome="/mesas/List" value="Mesas" style="color:#EC9807;"/>
+        &nbsp;
+        <h:link outcome="/mesero/List" value="Mesero" style="color:#161513;"/>
+        &nbsp; 
+        <h:link outcome="/platos/List" value="Platos" style="color:#EC9807;"/></center>
+        <br />
+       <center> <img src="./imagenesres/fondorestaurante.png" width="200" height="400"/></center>
+      
+    <center><h:form > 
+    <p:stack icon="./imagenesmenu/stack.png "  class="img" expanded="true" >
+       
+    <p:menuitem value="Areas" icon="/imagenesmenu/area.png"  outcome="/areas/List"/>
+    <p:menuitem value="Clientes" icon="./imagenesmenu/cliente.png" outcome="/clientes/List"/>
+    <p:menuitem value="Cocineros" icon="./imagenesmenu/cocinero.png" outcome="/cocineros/List"/>
+    <p:menuitem value="DetalleFactura" icon="./imagenesmenu/detallefac.png" outcome="/detallefactura/List"/>
+    <p:menuitem value="Factura" icon="./imagenesmenu/factura.png"  outcome="/fatura/List" />
+    <p:menuitem value="Menu" icon="./imagenesmenu/menu.png"  outcome="/menu/List"  />
+    </p:stack> 
+     </h:form></center>
+
+    </h:body>   
+</html>
+ 
